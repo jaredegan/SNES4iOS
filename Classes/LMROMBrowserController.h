@@ -27,6 +27,6 @@
   NSTimer* _fsTimer;
 }
 
-@property (retain) LMFileListItem* detailsItem;
+@property (strong) LMFileListItem* detailsItem;
 
 @end

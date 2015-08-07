@@ -42,27 +42,27 @@ typedef enum _LMEmulatorAlert
 
 - (void)LM_emulationThreadMethod:(NSString*)romFileName;
 {
-  NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+  @autoreleasepool {
   
-  if(_emulationThread == [NSThread mainThread])
-    _emulationThread = [NSThread currentThread];
-  
-  const char* originalString = [romFileName UTF8String];
-  char* romFileNameCString = (char*)calloc(strlen(originalString)+1, sizeof(char));
-  strcpy(romFileNameCString, originalString);
-  originalString = nil;
+    if(_emulationThread == [NSThread mainThread])
+      _emulationThread = [NSThread currentThread];
+    
+    const char* originalString = [romFileName UTF8String];
+    char* romFileNameCString = (char*)calloc(strlen(originalString)+1, sizeof(char));
+    strcpy(romFileNameCString, originalString);
+    originalString = nil;
 
-  SISetEmulationPaused(0);
-  SISetEmulationRunning(1);
-  SIStartWithROM(romFileNameCString);
-  SISetEmulationRunning(0);
+    SISetEmulationPaused(0);
+    SISetEmulationRunning(1);
+    SIStartWithROM(romFileNameCString);
+    SISetEmulationRunning(0);
+    
+    free(romFileNameCString);
+    
+    if(_emulationThread == [NSThread currentThread])
+      _emulationThread = nil;
   
-  free(romFileNameCString);
-  
-  if(_emulationThread == [NSThread currentThread])
-    _emulationThread = nil;
-  
-  [pool release];
+  }
 }
 
 - (void)LM_dismantleExternalScreen
@@ -74,11 +74,9 @@ typedef enum _LMEmulatorAlert
     SISetScreenDelegate(self);
     [_customView setPrimaryBuffer];
 
-    [_externalEmulator release];
     _externalEmulator = nil;
   }
   
-  [_externalWindow release];
   _externalWindow = nil;
   
   if(_customView.superview != nil)
@@ -97,8 +95,6 @@ typedef enum _LMEmulatorAlert
   UINavigationController* n = [[UINavigationController alloc] initWithRootViewController:c];
   n.modalPresentationStyle = UIModalPresentationFormSheet;
   [self presentViewController:n animated:YES completion:nil];
-  [c release];
-  [n release];
 }
 
 #pragma mark UI Interaction Handling
@@ -203,7 +199,6 @@ typedef enum _LMEmulatorAlert
                                           otherButtonTitles:NSLocalizedString(@"RESET", nil), nil];
     alert.tag = LMEmulatorAlertReset;
     [alert show];
-    [alert release];
   }
   else if(buttonIndex == loadIndex)
   {
@@ -214,7 +209,6 @@ typedef enum _LMEmulatorAlert
                                           otherButtonTitles:NSLocalizedString(@"LOAD", nil), nil];
     alert.tag = LMEmulatorAlertLoad;
     [alert show];
-    [alert release];
   }
   else if(buttonIndex == saveIndex)
   {
@@ -225,7 +219,6 @@ typedef enum _LMEmulatorAlert
                                           otherButtonTitles:NSLocalizedString(@"SAVE", nil), nil];
     alert.tag = LMEmulatorAlertSave;
     [alert show];
-    [alert release];
   }
   else if(buttonIndex == settingsIndex)
   {
@@ -527,7 +520,6 @@ typedef enum _LMEmulatorAlert
 {
   [super viewDidUnload];
   
-  [_customView release];
   _customView = nil;
 }
 
@@ -647,13 +639,11 @@ typedef enum _LMEmulatorAlert
   
   [self LM_dismantleExternalScreen];
   
-  [_customView release];
   _customView = nil;
   
   self.romFileName = nil;
   self.initialSaveFileName = nil;
   
-  [super dealloc];
 }
 
 @end

@@ -18,12 +18,6 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 
-- (void)dealloc
-{
-  [_window release];
-  [_viewController release];
-  [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -32,13 +26,11 @@
   NSLog(@"\nDocuments Directory:\n%@\n\n", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]);
 #endif
   
-  self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
   LMROMBrowserController* romBrowser = [[LMROMBrowserController alloc] init];
   UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:romBrowser];
   self.viewController = nav;
-  [nav release];
-  [romBrowser release];
 
   self.window.rootViewController = self.viewController;
   [self.window makeKeyAndVisible];

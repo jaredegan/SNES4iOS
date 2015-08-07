@@ -90,9 +90,9 @@
 		A050663214B21DDB003E0C5E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A050663114B21DDB003E0C5E /* QuartzCore.framework */; };
 		A093242917CE590200A93B6B /* LMMultipleChoicePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = A093242717CE590200A93B6B /* LMMultipleChoicePicker.m */; };
 		A093243017CE6B3000A93B6B /* LMEmulatorControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A093242F17CE6B3000A93B6B /* LMEmulatorControllerView.m */; };
-		A0995BD714B508AC00F7C44F /* iOSAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995BD314B508AC00F7C44F /* iOSAudio.cpp */; };
-		A0995C1214B525D200F7C44F /* Snes9xMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995C1114B525D200F7C44F /* Snes9xMain.cpp */; };
-		A0995F8014B679FF00F7C44F /* Snes9xCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995F7F14B679F300F7C44F /* Snes9xCallbacks.cpp */; };
+		A0995BD714B508AC00F7C44F /* iOSAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995BD314B508AC00F7C44F /* iOSAudio.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0995C1214B525D200F7C44F /* Snes9xMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995C1114B525D200F7C44F /* Snes9xMain.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0995F8014B679FF00F7C44F /* Snes9xCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A0995F7F14B679F300F7C44F /* Snes9xCallbacks.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A0995F8614B6884F00F7C44F /* SIScreenDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0995F8514B6883E00F7C44F /* SIScreenDelegate.m */; };
 		A0A8A0FA14B25401003C5688 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A8A0F914B25401003C5688 /* AudioToolbox.framework */; };
 		A0A8A0FC14B25409003C5688 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A8A0FB14B25409003C5688 /* libz.dylib */; };
@@ -1089,6 +1089,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
@@ -1109,6 +1110,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Classes/Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
